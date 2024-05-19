@@ -153,8 +153,6 @@
                 </div>
             </div>
         </form>
-
-
         <button type="button" class="btn btn-primary">Book an Appointment</button>
     </div>
 </body>
