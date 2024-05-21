@@ -95,41 +95,51 @@
 <?php
 
 if(isset($_POST['submit'])){
-$emailcheck = $database->prepare('SELECT email FROM patients WHERE email = :email');
-$emailcheck->bindParam(':email',$_POST['email']);
-$emailcheck->execute();
-if($emailcheck->rowCount()>0){
 
-}else{
-    $insert = $database->prepare('INSERT INTO 
-    patients(FName,LName,Date_of_birth,Phone_number,Email,Emergency_contact,Patient_sex)
-    VALUES(:FName,	:LName,	:Date_of_birth,	:Phone_number	,:Email	,:Emergency_contact	,:Patient_sex)
-    ');
-    $insert->bindParam('FName',$_POST['fname']);
-    $insert->bindParam('LName',$_POST['lname']);
-    $insert->bindParam('Date_of_birth',$_POST['dob']);
-    $insert->bindParam('Phone_number',$_POST['phone']);
-    $insert->bindParam('Email',$_POST['email']);
-    $insert->bindParam('Emergency_contact',$_POST['emrgencyPhone']);
-    $insert->bindParam('Patient_sex',$_POST['gender']);
-    $insert->execute();
+    $emailcheck = $database->prepare('SELECT email FROM patients WHERE email = :email');
+    $emailcheck->bindParam(':email',$_POST['email']);
+    $emailcheck->execute();
 
-    $insertUser = $database->prepare('INSERT INTO 
-    users(Username,Password,UserType,FName,LName/*,Email,P_id*/)
-    VALUES(:username,:password,:role,:fname,:lname,:email/*,:patientId*/)
-    ');
-    $insertUser->bindParam('username',$_POST['username']);
-    $insertUser->bindParam('password',$_POST['password']);
-    $insertUser->bindParam('role',$_POST['role']);
-    $insertUser->bindParam('fname',$_POST['fname']);
-    $insertUser->bindParam('lname',$_POST['lname']);
-    $insertUser->bindParam('email',$_POST['email']);
-    // $patientId = $_POST['submit'];
-    // $insertUser->bindParam('patientId',$patientId);
-    $insertUser->execute();
+    if($emailcheck->rowCount()>0){
+        echo "<div class='container' style='margin-top:-7rem'><div class='alert alert-warning' role='alert'>
+        A simple warning alert with <a href='#' class='alert-link'>an example link</a>. Give it a click if you like.
+        </div></div>";
+    }
+    else{
+        $insert = $database->prepare('INSERT INTO 
+        patients(FName,LName,Date_of_birth,Phone_number,Email,Emergency_contact,Patient_sex)
+        VALUES(:FName,	:LName,	:Date_of_birth,	:Phone_number	,:Email	,:Emergency_contact	,:Patient_sex)
+        ');
+        $insert->bindParam('FName',$_POST['fname']);
+        $insert->bindParam('LName',$_POST['lname']);
+        $insert->bindParam('Date_of_birth',$_POST['dob']);
+        $insert->bindParam('Phone_number',$_POST['phone']);
+        $insert->bindParam('Email',$_POST['email']);
+        $insert->bindParam('Emergency_contact',$_POST['emrgencyPhone']);
+        $insert->bindParam('Patient_sex',$_POST['gender']);
+        $insert->execute();
+        
+        $getid = $database->prepare('SELECT Patient_id FROM patients WHERE Email = :EMAIL');
+        $getid->bindParam("EMAIL",$_POST['email']);
+        $getid->execute();
+        $patientId = $getid->fetch(PDO::FETCH_ASSOC);
+        $pid=$patientId["Patient_id"];
+        
+        $insertUser = $database->prepare('INSERT INTO 
+        users(Username,Password,UserType,FName,LName,Email,P_id)
+        VALUES(:username,:password,:role,:fname,:lname,:email,:patientId)
+        ');
+        $insertUser->bindParam('username',$_POST['username']);
+        $insertUser->bindParam('password',$_POST['password']);
+        $insertUser->bindParam('role',$_POST['role']);
+        $insertUser->bindParam('fname',$_POST['fname']);
+        $insertUser->bindParam('lname',$_POST['lname']);
+        $insertUser->bindParam('email',$_POST['email']);
+        $insertUser->bindParam('patientId',$pid);
+        $insertUser->execute();
+        echo "<div class='container' style='margin-top:-5rem'><div class='alert alert-success' role='alert'>
+        A simple success alert—check it out!
+        </div></div>";
+    }
 }
-}else{
-
-}
-
 ?>
