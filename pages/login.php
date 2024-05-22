@@ -11,7 +11,7 @@
 </head>
 
 <body>
-    <div class="container mt-5">
+    <div class="container mt-5 py-5">
         <div class="row d-flex justify-content-center">
             <div class="col-md-4">
                 <div class="card shadow">
@@ -23,17 +23,42 @@
                             <div class="form-group mb-3">
                                 <label for="username" class="form-label">Username</label>
                                 <input type="text" class="form-control" id="username" name="username"
-                                    placeholder="Enter username">
+                                    placeholder="Enter username" required>
                             </div>
                             <div class="form-group mb-3">
                                 <label for="password" class="form-label">Password</label>
                                 <input type="password" class="form-control" id="password" name="password"
-                                    placeholder="Enter password">
+                                    placeholder="Enter password" required>
+                                <div class="float-end"><a href="" style="text-decoration:none">Forget password?</a>
+                                </div>
                             </div>
-                            <div class="text-center">
-                                <button type="submit" class="btn btn-primary">Login</button>
+                            <div class="">
+                                <button type="submit" class="btn btn-primary" name="submit">Login</button>
                             </div>
                         </form>
+                        <?php
+    $username = 'root';
+    $password = '';
+    $database = new PDO('mysql:host=localhost;dbname=clinicdb;',$username,$password);
+    if(isset($_POST['submit'])){
+        $username = $_POST['username'];
+        $password = $_POST['password'];
+        $login = $database->prepare("SELECT * FROM users WHERE Username=:username && Password=:password");
+        $login->bindParam("username",$username);
+        $login->bindParam("password",$password);
+        $login->execute();
+        if($login->rowCount()>0){
+            header("Location: http://localhost/server/gomedic/pages/home.php/#appointmentForm");
+        }
+        else{
+            echo '<div class="" style="font-size:14px"><div class="alert alert-danger d-flex align-items-center" role="alert">
+            <div>
+              Wrong email or password.Try again or click \'Forget password\' to reset it.
+            </div>
+          </div></div>';
+        }
+    }
+?>
                     </div>
                 </div>
             </div>

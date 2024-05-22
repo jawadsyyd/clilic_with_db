@@ -133,23 +133,24 @@
     <div class="container text-center border py-5 px-5"
         style="border-radius: 10px; background-color: rgb(188, 227, 226);">
         <h1>Get Your Free Medical Checkup. Book an Appointment!</h1>
-        <form>
+        <form id="appointmentForm">
             <div class="container mt-4">
                 <div class="row">
-                <div class="col-md-6 mb-3">
-                    <label for="name" class="form-label">Name:</label>
-                    <input type="text" id="name" class="form-control" placeholder="Enter patient's name" required>
+                    <div class="col-md-6 mb-3">
+                        <label for="name" class="form-label">Name:</label>
+                        <input type="text" id="name" class="form-control" placeholder="Enter patient's name" required>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label for="date" class="form-label">Date:</label>
+                        <input type="date" id="date" class="form-control" required>
+                    </div>
                 </div>
-                <div class="col-md-6 mb-3">
-                    <label for="date" class="form-label">Date:</label>
-                    <input type="date" id="date" class="form-control" required>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-6 mb-3">
-                    <label for="disease" class="form-label">Disease:</label>
-                    <textarea rows="5" type="text" id="disease" class="form-control" placeholder="Enter patient's disease description" required></textarea>
-                </div>
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label for="disease" class="form-label">Disease:</label>
+                        <textarea rows="5" type="text" id="disease" class="form-control"
+                            placeholder="Enter patient's disease description" required></textarea>
+                    </div>
                 </div>
             </div>
         </form>
