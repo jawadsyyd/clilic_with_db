@@ -1,3 +1,6 @@
+<?php
+    include('./nav.php');
+?>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 <!DOCTYPE html>
@@ -10,28 +13,30 @@
 </head>
 
 <body class="my-5 mx-5">
-    <section class="hero">
+    <section class="hero py-5">
         <div class="row">
-            <div class="container col-6">
+            <div class="container col-12 col-md-6">
                 <h5>Medical Checkup</h5>
                 <br>
                 <h1 class="fw-bold">Best Medical Clinic For Your Healthcare</h1>
                 <p>We will take care of your health and make sure you get the best service.
                     All is needed is booking an appointment to Begin a journey on defeating the sickness,
                     then leave the rest to us.</p>
-                <button type="button" class="btn btn-primary">Book An appointment</button>
+                <button type="button" class="btn btn-primary"><a href="#appointmentForm"
+                        style="text-decoration: none; color:white;">Book An
+                        appointment</a></button>
             </div>
 
-            <div class="col-2"></div>
+            <div class="col-md-2 pb-3"></div>
 
-            <div class="pic-container col-4">
+            <div class="pic-container col-12 col-md-4 text-center">
                 <img style="border-radius: 5px; height: 320px; width: 400px;"
                     src="https://tse1.mm.bing.net/th?id=OIP.E-ZeeuHCWJi1Rlym1Dn5GQHaFj&pid=Api&P=0&h=220">
             </div>
         </div>
     </section>
 
-    <div>
+    <div class="container-fluid pb-3">
         <div class="text-center">
             <h5>MEDCAL CHECKUP</h5>
             <h1>
@@ -42,7 +47,7 @@
             </h1>
         </div>
         <br>
-        <div class="row">
+        <div class="row  justify-content-around">
             <div class="col-3 border border-primary pt-3" style="text-align: center; border-radius: 10px;">
                 <svg class="bi bi-person border rounded-circle d-inline-flex justify-content-center align-items-center px-1 py-1"
                     xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" viewBox="0 0 16 16"
@@ -54,7 +59,6 @@
                 <p>We have some of the best doctors and employees in this Country.</p>
             </div>
 
-            <div class="col-1"></div>
 
             <div class="col-3 border border-primary pt-3"
                 style="text-align: center; border-radius: 10px; border-color: blue;">
@@ -68,9 +72,8 @@
                 <p>you can have access to your Medical Records to help on your recovery.</p>
             </div>
 
-            <div class="col-1"></div>
 
-            <div class="col-4 border border-primary pt-3" style="text-align: center; border-radius: 10px;">
+            <div class="col-3 border border-primary pt-3" style="text-align: center; border-radius: 10px;">
                 <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor"
                     class="bi bi-headphones border rounded-circle d-inline-flex justify-content-center align-items-center px-1 py-1"
                     viewBox="0 0 16 16" style="background-color: rgb(188, 227, 226);">
@@ -85,19 +88,19 @@
     <br>
     <div class="border text-center py-5" style="background-color: rgb(188, 227, 226); border-radius: 10px;">
         <h5>WHO WE ARE</h5>
-        <h1>Professional Doctor With Years Of Experience</h1>
+        <h1 class="pb-3">Professional Doctor With Years Of Experience</h1>
         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus, luctus nec ullamcorper mattis,
             pulvinar dapibus leo. Lorem ipsum dolor sit amet.</p>
     </div>
     <br>
-    <div class="team text-center">
+    <div class="team text-center pt-3">
         <h5>TEAM</h5>
         <h1>Meet Our Professionals</h1>
         <p>Some of the best Doctors in town all working in the same clinic having the same goal.</p>
     </div>
 
     <div class="row">
-        <div class="col-3 text-center">
+        <div class="col-md-3 col-6 text-center">
             <img width="298" height="394"
                 src="https://template-kit.rootlayers.com/gomedic/wp-content/uploads/sites/29/2021/08/team6.png"
                 class="attachment-large size-large" alt="" loading="lazy">
@@ -105,7 +108,7 @@
             <p>CEO & Director</p>
         </div>
 
-        <div class="col-3 text-center">
+        <div class="col-md-3 col-6 text-center">
             <img width="298" height="394"
                 src="https://template-kit.rootlayers.com/gomedic/wp-content/uploads/sites/29/2021/08/team1.png"
                 class="attachment-large size-large" alt="" loading="lazy">
@@ -113,7 +116,7 @@
             <p>CEO & Director</p>
         </div>
 
-        <div class="col-3 text-center">
+        <div class="col-md-3 col-6 text-center">
             <img width="298" height="394"
                 src="https://template-kit.rootlayers.com/gomedic/wp-content/uploads/sites/29/2021/08/team3.png"
                 class="attachment-large size-large" alt="" loading="lazy">
@@ -121,7 +124,7 @@
             <p>CEO & Director</p>
         </div>
 
-        <div class="col-3 text-center">
+        <div class="col-md-3 col-6 text-center">
             <img width="298" height="394"
                 src="https://template-kit.rootlayers.com/gomedic/wp-content/uploads/sites/29/2021/08/team4.png"
                 class="attachment-large size-large" alt="" loading="lazy">
@@ -130,32 +133,36 @@
         </div>
     </div>
     <br>
-    <div class="container text-center border py-5 px-5"
-        style="border-radius: 10px; background-color: rgb(188, 227, 226);">
-        <h1>Get Your Free Medical Checkup. Book an Appointment!</h1>
+    <div class="container-fluid border py-5 px-5" style="border-radius: 10px; background-color: rgb(188, 227, 226);">
+        <h1 class="pb-3">Get Your Free Medical Checkup. Book an Appointment!</h1>
         <form id="appointmentForm">
             <div class="container mt-4">
                 <div class="row">
                     <div class="col-md-6 mb-3">
-                        <label for="name" class="form-label">Name:</label>
+                        <label for="name" class="form-label fw-semibold">Name:</label>
                         <input type="text" id="name" class="form-control" placeholder="Enter patient's name" required>
                     </div>
                     <div class="col-md-6 mb-3">
-                        <label for="date" class="form-label">Date:</label>
+                        <label for="date" class="form-label fw-semibold">Date:</label>
                         <input type="date" id="date" class="form-control" required>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-md-6 mb-3">
-                        <label for="disease" class="form-label">Disease:</label>
+                        <label for="disease" class="form-label fw-semibold">Disease:</label>
                         <textarea rows="5" type="text" id="disease" class="form-control"
                             placeholder="Enter patient's disease description" required></textarea>
                     </div>
                 </div>
             </div>
         </form>
-        <button type="button" class="btn btn-primary">Book an Appointment</button>
+        <div class="text-center">
+            <button type="button" class="btn btn-primary">Book an Appointment</button>
+        </div>
     </div>
 </body>
 
 </html>
+<?php
+    include('./footer.php');
+?>

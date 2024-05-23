@@ -10,7 +10,7 @@
 </head>
 
 <body>
-    <div class="container my-3">
+    <div class="container-fluid my-3 pt-5 rounded p-3" style="background-color: rgb(188, 227, 226);">
         <div class="row">
             <div class="col-4"><a class="navbar-brand" href="#">
                     <img src="https://placehold.co/50" alt="Logo" width="30" height="24"
