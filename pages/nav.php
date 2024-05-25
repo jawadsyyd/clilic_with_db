@@ -38,7 +38,7 @@
                                 <li><a class="dropdown-item" href="#">Appointments</a></li>
                                 <li><a class="dropdown-item" href="#">Medical records</a></li>
                                 <li><a class="dropdown-item" href="#">Medications</a></li>
-                                <li><a class="dropdown-item" href="#">Doctors</a></li>
+                                <li><a class="dropdown-item" href="./doctors.php">Doctors</a></li>
                                 <li><a class="dropdown-item" href="#">Patients</a></li>
 
                                 <li>
