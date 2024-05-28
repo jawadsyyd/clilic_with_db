@@ -78,61 +78,79 @@ if (isset($_POST['submit'])) {
                 <th>License Number</th>
                 <th>Phone Number</th>
                 <th>Speciality</th>
+                <th>******</th>
             </tr>
         </thead>
         <?php
 $data = "SELECT * FROM doctors";
 $result = $database->query($data);
-
 if ($result->rowCount() > 0) {
   foreach ($result as $doctor) {
     echo"<tbody>";
-    echo "<tr>";
+    echo "<tr id='newTr'>";
     echo "<td>" . $doctor['Doctor_id'] . "</td>";
     echo "<td>" . $doctor['FName'] . "</td>";
     echo "<td>" . $doctor['LName'] . "</td>";
     echo "<td>" . $doctor['License_number'] . "</td>";
     echo "<td>" . $doctor['Phone_number'] . "</td>";
     echo "<td>" . $doctor['Speciality'] . "</td>";
+    echo "<td><form method='post'><button onclick='setButtonId(this.id)' id='" . $doctor['Doctor_id'] . "' class='btn update-btn btn-warning btn-sm' name='update'>Update</button> ";
+    echo " <button onclick='setButtonId(this.id)' id='" . $doctor['Doctor_id'] . "' class='btn delete-btn btn-danger btn-sm' name='delete'>Delete</button></form></td>";
     echo "</tr>";
     echo"</tbody>";
   }
-
 }
 else {
-  echo "<tr><td colspan='5'>No doctors found</td></tr>";
+  echo "<tr><td colspan='7'>No doctors found</td></tr>";
 }
 ?>
     </table>
-    <script>
-    const submit = document.getElementById('submit');
-    var doctorFirstName = document.getElementById('doctorFirstName'),
-        doctorLastName = document.getElementById('doctorLastName'),
-        doctorLicenseNumber = document.getElementById('doctorLicenseNumber'),
-        doctorPhoneNumber = document.getElementById('doctorPhoneNumber'),
-        doctorSpeciality = document.getElementById('doctorSpeciality');
-    submit.onsubmit = () => {
-        doctorFirstName.value = doctorLastName.value = doctorLicenseNumber.value = doctorPhoneNumber.value =
-            doctorSpeciality.value = '';
-    };
-
-    function removeTableRowsOnLoad() {
-
-        const table = document.getElementById("doctorInfo");
-        if (!table) {
-            return;
-        }
-
-        const tbody = table.querySelector("tbody");
-        if (!tbody) {
-            return;
-        }
-
-        tbody.innerHTML = "";
-    }
-
-    window.onload = removeTableRowsOnLoad;
-    </script>
+    <script src="../js/doctors.js"></script>
 </body>
 
 </html>
+<?php
+if(isset($_POST['update'])){
+
+    $buttonId = $_POST["update"];
+
+    $update = $database->prepare("UPDATE doctors SET
+        FName =:FName,
+        LName =:LName,
+        Speciality =:Speciality,
+        License_number =:License_number,
+        Phone_number =:Phone_number WHERE
+        Doctor_id=:Doctor_id
+    ");
+    
+    $update->bindParam("FName",$_POST['doctorFirstName']);
+    $update->bindParam("LName",$_POST['doctorLastName']);
+    $update->bindParam("Speciality",$_POST['doctorSpeciality']);
+    $update->bindParam("License_number",$_POST['doctorLicenseNumber']);
+    $update->bindParam("Phone_number",$_POST['doctorPhoneNumber']);
+    $update->bindParam("Doctor_id",$buttonId);
+    if($update->execute()){
+        echo '<div class="alert alert-success" role="alert">
+        A simple success alert—check it out!
+      </div>';
+    }else{
+        echo '<div class="alert alert-danger" role="alert">
+        A simple success alert—check it out!
+      </div>';
+    }
+}
+if(isset($_POST["delete"])){
+    $buttonId = $_POST["delete"];
+    $delete = $database->prepare("DELETE FROM doctors WHERE Doctor_id=:Doctor_id");
+    $delete->bindParam("Doctor_id",$buttonId);
+    if($delete->execute()){
+        echo '<div class="alert alert-success" role="alert">
+        A simple success alert—check it out!
+      </div>';
+    }else{
+        echo '<div class="alert alert-danger" role="alert">
+        A simple success alert—check it out!
+      </div>';
+    }
+}
+?>
